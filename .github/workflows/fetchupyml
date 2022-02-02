@@ -1,0 +1,15 @@
+name: Fetch Upstream
+
+on: [push, fork, pull_request]
+
+jobs:
+  fetch-upstream:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Fetch Upstream
+      uses: bdougie/fetch-upstream@master
+      with:
+        upstream: OpenDroneMap/NodeODM
+      env:
+        GITHUB_TOKEN: ${{ secrets.TOKEN_FOR_AUTH_GIT }}      
