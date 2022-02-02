@@ -8,7 +8,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Fetch Upstream
-      uses: bdougie/fetch-upstream@master
+      uses: rumenmitrev/fetch-upstream@master
       with:
         upstream: OpenDroneMap/NodeODM
       env:
