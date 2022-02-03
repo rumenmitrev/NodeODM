@@ -1,4 +1,4 @@
-FROM opendronemap/odm:latest
+FROM rmitrev/nodeodmgpu:efs
 MAINTAINER Piero Toffanin <pt@masseranolabs.com>
 
 EXPOSE 3000
