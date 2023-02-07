@@ -30,6 +30,24 @@ Linux users can connect to 127.0.0.1.
 
 If the computer running NodeODM is using an old or 32bit CPU, you need to compile OpenDroneMap from sources and setup NodeODM natively. You cannot use docker. Docker images work with CPUs with 64-bit extensions, MMX, SSE, SSE2, SSE3 and SSSE3 instruction set support or higher. Seeing a `Illegal instruction` error while processing images is an indication that your CPU is too old. 
 
+### Running rootless
+
+* A rootless alternative to Docker is using [Apptainer](https://apptainer.org/). In order to run NodeODM together with ClusterODM in rootless environments, for example on HPC, we need a rootless alternative to Docker, and that's where Apptainer comes in to play. From the Linux command line, cd into the NodeODM folder and run the following commands to host a NodeODM instance:
+
+```
+apptainer build --sandbox node/ apptainer.def
+apptainer run --writable node/ 
+```
+
+`apptainer build --sandbox` requires you to have root permission to build this apptainer container. Make sure someone with root permission build this for you. You will need to build this apptainer container if you want to work with ClusterODM on the HPC. Check for [ClusterODM](https://github.com/OpenDroneMap/ClusterODM) for more instructions on using SLURM to set it up.
+
+An apptainer.def file can be built directly from the dockerfile as needed:
+
+```
+pip3 install spython
+spython recipe Dockerfile &> apptainer.def
+```
+
 ## API Docs
 
 See the [API documentation page](https://github.com/OpenDroneMap/NodeODM/blob/master/docs/index.adoc).
